@@ -6,7 +6,7 @@ if &shell == "/usr/bin/sudosh"
   set shell=/bin/bash
 endif
 
-filetype off
+" filetype off
 call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
 
@@ -30,6 +30,7 @@ set scrolloff=5
 set ignorecase
 set smartcase
 set wildignore+=*.pyc,*.o,*.class,*.lo,.git,vendor/*
+set noswapfile
 
 if version >= 703
   set undodir=~/.vim/undodir
@@ -39,11 +40,11 @@ endif
 set undolevels=1000 "maximum number of changes that can be undone
 
 " Color
-colorscheme vibrantink
+colorscheme desert_2013
 
 au FileType diff colorscheme desert
 au FileType git colorscheme desert
-au BufWinLeave * colorscheme vibrantink
+au BufWinLeave * colorscheme desert_2013
 
 augroup markdown
   au!
@@ -54,9 +55,17 @@ augroup END
 
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 autocmd FileType tex setlocal textwidth=78
 autocmd BufNewFile,BufRead *.txt setlocal textwidth=78
+
+autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead .jshintrc set ft=javascript
+
+" Add syntact highlighting for Handlebars templates
+autocmd BufNewFile,BufRead *.hbs set ft=html
+autocmd BufNewFile,BufRead *.handlebars set ft=html
 
 autocmd FileType ruby runtime ruby_mappings.vim
 
@@ -70,7 +79,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Autoremove trailing spaces when saving the buffer
-autocmd FileType ruby,c,cpp,java,javascript,php,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType ruby,c,cpp,java,php,html,javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Highlight too-long lines
 autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%126v.*/
@@ -176,6 +185,12 @@ nnoremap <silent> Y y$
 
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
+" Map <Ctrl>cursor keys to toggle between windows.
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j 
+nnoremap <C-h> <C-w>h
+
 " ========= Insert Shortcuts ========
 
 imap <C-L> <SPACE>=><SPACE>
@@ -219,10 +234,20 @@ endfunction
 command! -nargs=0 StartInferiorSlimeServer :call StartInferiorSlimeServer()
 
 function! __Edge()
-  colorscheme Tomorrow-Night
-  au BufWinLeave * colorscheme Tomorrow-Night
+  colorscheme Tomorrow-Night-Eighties
+  au BufWinLeave * colorscheme Tomorrow-Night-Eighties
 
   set ttyfast
+
+  " ====== From Josh ======
+  " Don't make a backup before overwriting a file
+  set nowritebackup
+
+  " Don't use a swqpfile for the buffer
+  set noswapfile
+
+  " Reload files that have been changed outside of Vim
+  set autoread
 
   map <leader>nf :e%:h<CR>
   map <C-p> :CommandT<CR>

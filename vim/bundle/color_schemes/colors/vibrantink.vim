@@ -31,7 +31,7 @@ if has("gui_running")
     highlight Cursor guifg=Black   guibg=Yellow
     highlight Keyword guifg=#FF6600
     highlight Define guifg=#FF6600
-    highlight Comment guifg=#9933CC
+    highlight Comment guifg=#424242
     highlight Type guifg=White gui=NONE
     highlight rubySymbol guifg=#339999 gui=NONE
     highlight Identifier guifg=White gui=NONE
@@ -48,21 +48,21 @@ if has("gui_running")
 else
     set t_Co=256
     highlight Normal ctermfg=White ctermbg=NONE
-    highlight Cursor ctermfg=Black ctermbg=Yellow 
-    highlight Keyword ctermfg=202 
-    highlight Define ctermfg=202 
-    highlight Comment ctermfg=98
-    highlight Type ctermfg=White 
-    highlight rubySymbol ctermfg=66 
-    highlight Identifier ctermfg=White 
-    highlight rubyStringDelimiter ctermfg=82 
-    highlight rubyInterpolation ctermfg=White 
-    highlight rubyPseudoVariable ctermfg=66 
-    highlight Constant ctermfg=228 
-    highlight Function ctermfg=220 
-    highlight Include ctermfg=220 
+    highlight Cursor ctermfg=Black ctermbg=Yellow
+    highlight Keyword ctermfg=202
+    highlight Define ctermfg=202
+    highlight Comment ctermfg=235
+    highlight Type ctermfg=252
+    highlight rubySymbol ctermfg=66
+    highlight Identifier ctermfg=252
+    highlight rubyStringDelimiter ctermfg=33
+    highlight rubyInterpolation ctermfg=White
+    highlight rubyPseudoVariable ctermfg=66
+    highlight Constant ctermfg=228
+    highlight Function ctermfg=220
+    highlight Include ctermfg=220
     highlight Statement ctermfg=202
-    highlight String ctermfg=82 
-    highlight Search ctermbg=White 
+    highlight String ctermfg=33
+    highlight Search ctermbg=234
     highlight CursorLine cterm=NONE ctermbg=235
 endif
